@@ -1,12 +1,18 @@
 # Autogen
 
-C++ code generator based on [xsdata](https://github.com/tefra/xsdata) to manage parsing and collecting all the requirements of the schema.
+C++ code generator based on [xsdata](https://github.com/tefra/xsdata) to generate code base off a schema.
+
+# Core Capabilities
+
+1. Generate Protobuf converter classes capable of converting a schema defined C++ message class to a protobuf message. 
+2. Generate C++ Message classes with built in serialization capability based off a schema.
+3. Generate .proto files for the Protobuf compiler based off a yaml schema.
 
 ## Quick commands
 
 If you already have an environment set up, or are running inside a built container:
 
-`python -m autogen -t [TEMPLATE_TYPE] -f api ./schemas/xsd/sample.xsd`
+`python -m autogen -t [TEMPLATE_TYPE] ./schemas/yaml/sample.yaml`
 
 NOTE: if running in a poetry env, prefix commands with `poetry run`
 
@@ -16,7 +22,7 @@ NOTE: template generation is *ADDITIVE* meaning existing files in `src/` and `te
 
 Given an input message/object spec, generate one or more template based sets of code to use or convert data following that spec. Primary support is xsd and yaml, see section below about all supported formats.
 
-Templates can live inside the application, or referenced from a location on disk outside the repo. Unlikely you'll have an external set of templates, but you could. See `filters.py` for the filters or tests that can be used on the variables in template scope (jinja2 speak, docs [here]()).
+Templates can live inside the application, or referenced from a location on disk outside the repo. Unlikely you'll have an external set of templates, but you could. See `filters.py` for the filters or tests that can be used on the variables in template scope (jinja2 speak, docs [here](https://jinja.palletsprojects.com/en/3.0.x/templates/)).
 
 ## Template structure
 

@@ -1,0 +1,41 @@
+- type: "struct"
+  name: CustomTime
+  fields:
+    - type: SubType
+      name: sub_scrub
+    - type: Duration
+      name: t1
+      required: true
+    - type: uint64
+      name: t2
+      restrictions:
+        min_occurs: 0
+- type: struct
+  name: Time2
+  extends: CustomTime
+  fields:
+    - type: str
+      name: extra_stuff
+      repeats: true
+- type: "enum"
+  name: SubType
+  values:
+    - ABC
+    - DEF
+    - GHI
+- type: alias
+  name: ShortString
+  base: str
+  restrictions:
+    min_length: 1
+    max_length: 2
+- type: variant
+  name: AnyOneThing
+  types:
+  - type: CustomTime
+    key: Waka
+  - type: SubType
+    help: Something can be here if you want?
+    key: Flaka
+  - type: ShortString
+    key: Flame
