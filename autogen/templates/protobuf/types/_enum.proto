@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package {{ns_tpl|proto.ns_to_pkg}};
+
+enum {{type_name}}
+{
+    {%- for attr in type_info.attrs %}
+    {{type_name}}_{{attr|enum.name}} = {{loop.index - 1}};
+    {%- endfor %}
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package {{ns_tpl|proto.ns_to_pkg}};
+
+enum TypeMapEnum 
+{
+    {%- for key, _class in class_map.items() %}
+    TypeMapEnum_{{key}} = {{loop.index - 1}};
+    {%- endfor %}
+}

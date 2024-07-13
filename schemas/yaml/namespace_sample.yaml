@@ -1,0 +1,13 @@
+- name: Address
+  # namespace: sub::namespace
+  includes:
+    - file1.h
+    - file2.h
+    - file3.h
+    
+- name: AddressType
+  namespace: other::sub::namespace
+  inclues:
+    - a.h
+    - b.h
+    - c.h

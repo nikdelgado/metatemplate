@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package {{ns_tpl|proto.ns_to_pkg}};
+
+{%- if type_info.extensions %}
+import "{{type_info.extensions[0]|ext.type}}.proto"; 
+{%- endif %}
+{%- for type in type_info.attrs|reject('member.is_native')|map('member.base_type_name')|list|sort|unique %}
+import "{{type|proto.type_map}}.proto";
+{%- endfor %}
+
+message {{type_name}} {
+    {%- if type_info.extensions %}
+    {{type_info.extensions[0]|ext.type}} parent = 1;
+    {%- endif %}
+    
+    {%- set offset = 0 if not type_info.extensions else 1 %}
+
+    {%- for attr in type_info.attrs %}
+    {% if attr is member.is_list %}repeated {% endif %}{{attr|member.base_type_name|proto.type_map}} {{attr|member.val_name}} = {{loop.index + offset}};
+    {%- endfor %}
+}

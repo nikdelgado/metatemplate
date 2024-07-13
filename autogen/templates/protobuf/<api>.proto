@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package {{ns_package|proto.ns_to_pkg}};
+
+{%- for key, _class in class_map.items() %}
+import "{{key}}.proto";
+{%- endfor %}

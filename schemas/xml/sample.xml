@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Definition of enumeration -->
+  <xs:simpleType name="ColorEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Red"/>
+      <xs:enumeration value="Green"/>
+      <xs:enumeration value="Blue"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Definition of a struct -->
+  <xs:complexType name="Point">
+    <xs:sequence>
+      <xs:element name="x" type="xs:int"/>
+      <xs:element name="y" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Definition of a struct with an enumeration -->
+  <xs:complexType name="ColoredPoint">
+    <xs:complexContent>
+      <xs:extension base="Point">
+        <xs:sequence>
+          <xs:element name="color" type="ColorEnum"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- Definition of a vector of points -->
+  <xs:complexType name="VectorOfPoints">
+    <xs:sequence>
+      <xs:element name="Point" type="Point" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Sample message types -->
+  <xs:element name="Messages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="SimpleMessage">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" type="xs:int"/>
+              <xs:element name="text" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ComplexMessage">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="position" type="Point"/>
+              <xs:element name="path" type="VectorOfPoints"/>
+              <xs:element name="status" type="ColorEnum"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AdvancedMessage">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" type="xs:int"/>
+              <xs:element name="description" type="xs:string"/>
+              <xs:element name="coloredPosition" type="ColoredPoint"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package {{ns_tpl|proto.ns_to_pkg}};
+
+message Duration {
+    int64 value = 1;
+}

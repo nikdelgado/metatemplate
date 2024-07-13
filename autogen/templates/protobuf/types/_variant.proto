@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package {{ns_tpl|proto.ns_to_pkg}};
+
+{%- for v_type in type_info|variant.choices|map(attribute='raw_type')|sort|unique|list
+    if not v_type is proto.native_type -%}
+import "{{v_type|proto.type_map}}.proto";
+{%- endfor %}
+
+enum {{type_name}}ChoiceType {
+    {%- for choice in type_info|variant.choices %}
+    {{type_name}}Choice_{{choice.name}} = {{loop.index - 1}};
+    {%- endfor %}
+}
+
+message {{type_name}} {
+    {{type_name}}ChoiceType choice = 1;
+    {%- for choice in type_info|variant.choices %}
+    {% if choice.as_attr is member.is_list %}repeated {% endif %}{{choice.raw_type|proto.type_map}} {{choice.name}} = {{loop.index + 1}};
+    {%- endfor %}
+}
