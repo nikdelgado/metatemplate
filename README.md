@@ -8,6 +8,17 @@ C++ code generator based on [xsdata](https://github.com/tefra/xsdata) to generat
 2. Generate C++ Message classes with built in serialization capability based off a schema.
 3. Generate .proto files for the Protobuf compiler based off a yaml schema.
 
+## Demo commands
+
+### Generate Protobuf converters
+`python -m autogen -t protobuf_converters ./schemas/yaml/sample.yaml`
+
+### Generate C++ message classes
+`python -m autogen -t api ./schemas/yaml/sample.yaml`
+
+### Generate .proto files for the protobuf compiler
+`python -m autogen -t protobuf ./schemas/yaml/sample.yaml`
+
 ## Quick commands
 
 If you already have an environment set up, or are running inside a built container:
