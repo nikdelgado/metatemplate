@@ -10,14 +10,14 @@ C++ code generator based on [xsdata](https://github.com/tefra/xsdata) to generat
 
 ## Demo commands
 
-### Generate Protobuf converters
-`python -m autogen -t protobuf_converters ./schemas/yaml/sample.yaml`
+**Generate Protobuf converters**
+`poetry run python -m autogen -t protobuf_converters ./schemas/yaml/sample.yaml`
 
-### Generate C++ message classes
-`python -m autogen -t api ./schemas/yaml/sample.yaml`
+**Generate C++ message classes**
+`poetry run python -m autogen -t api ./schemas/yaml/sample.yaml`
 
-### Generate .proto files for the protobuf compiler
-`python -m autogen -t protobuf ./schemas/yaml/sample.yaml`
+**Generate .proto files for the protobuf compiler**
+`poetry run python -m autogen -t protobuf ./schemas/yaml/sample.yaml`
 
 ## Quick commands
 
@@ -81,8 +81,6 @@ the api templates have examples of all these features, render the sample Message
  2. Add Poetry to your PATH `export PATH="$HOME/.local/bin:$PATH"`
  3. Reload your shell configuration
  4. Verify the installation `poetry --version`
-
- Note: If you get an SSL: CERTIFICATE_VERIFY_FAILED error, install the latest certificates for your version of Python (MacOS): `/Applications/Python\ 3.XX/Install\ Certificates.command`
 
 ### Setting up Poetry Environment
 
