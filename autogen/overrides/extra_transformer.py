@@ -21,6 +21,7 @@ class ExtraTransformer(SchemaTransformer):
 
     The original is a hardcoded list of the suppports included in the ctor.
     """
+
     def __init__(self, print: bool, config: GeneratorConfig):
         super().__init__(print, config)
         self.source_processor_map = {
@@ -30,13 +31,13 @@ class ExtraTransformer(SchemaTransformer):
             TYPE_XML: self.process_xml_documents,
             TYPE_JSON: self.process_json_documents,
         }
-        
+
     def process_sources(self, uris: List[str]):
         sources = defaultdict(list)
         for uri in uris:
             tp = self.classify_resource(uri)
             sources[tp].append(uri)
-        
+
         for key, processor in self.source_processor_map.items():
             output = processor(sources[key])
             if output:

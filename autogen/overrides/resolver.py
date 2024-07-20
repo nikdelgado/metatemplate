@@ -2,6 +2,7 @@ from xsdata.codegen.resolver import DependenciesResolver
 
 from .custom_types import PLACEHOLDER_PREFIX
 
+
 class AgResolver(DependenciesResolver):
     """This override of resolver is specifically added to support
     the case where a member type is defined outside the scope of the "api"
@@ -15,7 +16,8 @@ class AgResolver(DependenciesResolver):
     are generated to continue supporting, but not rendering out, classes
     defined outside this "schema's" scope.
     """
+
     def find_package(self, qname: str) -> str:
         if qname.startswith(PLACEHOLDER_PREFIX):
-            return '.'.join(qname.removeprefix(PLACEHOLDER_PREFIX).split('::')[:-1])
+            return ".".join(qname.removeprefix(PLACEHOLDER_PREFIX).split("::")[:-1])
         return super().find_package(qname)
