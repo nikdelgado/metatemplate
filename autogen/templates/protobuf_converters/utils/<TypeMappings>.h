@@ -12,13 +12,13 @@ class {{type_name}};
 } // namespace protobuf_ns::types
 
 
-namespace {{ namespace }} {
+namespace cpp_ns::types {
     {%- for class_name in classes %}
     {%- if class_name in complex_types %}
     class {{ class_name }};
     {%- endif %}
     {%- endfor %}
-} // namespace {{ namespace }}
+} // namespace cpp_ns
 
 
 
@@ -32,8 +32,8 @@ namespace {{ns_package}}
     class RecieveMap<::TypeMapEnum::TypeMapEnum_{{type_name}}>
     {
     public:
-        using CppType = {{type_name}};
-        using ProtoType = ::types::{{type_name}};
+        using CppType = cpp_ns::types::{{type_name}};
+        using ProtoType = protobuf_ns::types::{{type_name}};
     };
 {% endfor %}
 
@@ -43,7 +43,7 @@ namespace {{ns_package}}
 {%- for type_name, _type in class_map|dictsort %}
 
     template<>
-    class SendMap<{{type_name | member.ns_override}}{{type_name}}>
+    class SendMap<cpp_ns::types::{{type_name}}>
     {
     public:
         const ::types::TypeMapEnum enumType = ::types::TypeMapEnum_{{type_name}};

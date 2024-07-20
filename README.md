@@ -1,8 +1,8 @@
 # Autogen
 
-C++ code generator based on [xsdata](https://github.com/tefra/xsdata) to generate code base off a schema.
+C++ code generator based on [xsdata](https://github.com/tefra/xsdata) to generate code base off a schema (YML or XSD).
 
-# Core Capabilities
+## Core Capabilities
 
 1. Generate Protobuf converter classes capable of converting a schema defined C++ message class to a protobuf message. 
 2. Generate C++ Message classes with built in serialization capability based off a schema.
@@ -20,9 +20,9 @@ NOTE: template generation is *ADDITIVE* meaning existing files in `src/` and `te
 
 ## General concept
 
-Given an input message/object spec, generate one or more template based sets of code to use or convert data following that spec. Primary support is xsd and yaml, see section below about all supported formats.
+Given an input message/object spec, generate one or more template based sets of code to use or convert data following that spec. Primary support is xsd and yml, see section below about all supported formats.
 
-Templates can live inside the application, or referenced from a location on disk outside the repo. Unlikely you'll have an external set of templates, but you could. See `filters.py` for the filters or tests that can be used on the variables in template scope (jinja2 speak, docs [here](https://jinja.palletsprojects.com/en/3.0.x/templates/)).
+Templates can live inside the application, or referenced from a location on disk outside the repo. Unlikely you'll have an external set of templates, but you could. See `filters.py` for the filters or tests that can be used on the variables in template scope (jinja2 speak, docs [here](https://jinja.palletsprojects.com/en/3.0.x/api/?highlight=filters#writing-filters)).
 
 ## Template structure
 
@@ -236,14 +236,7 @@ Either a string type name --or--
     - [some_header_file]
     - [some_other_header_file]
 
-## Building Docker Image
-To build the image run the following command:
-
-
-
-
 ## TODO items
 
 1. There's a bit of code that finds your git structure root and would install into the "destination" repo, but didn't get finished, so it's not activated. Requires `git` on PATH, so doesn't work inside the current container.
-2. External class support (yaml only) is untested in protobuf outputs, needs to make sure how the imports would work and compile the output files.
-3. libclang in python would be an interesting way to auto-detect and generate the conversion code between one of the outputs (api/proto/etc) and an externally defined library. Currently the templates depend on assumptions about naming patterns in external libraries, and are not re-usable for others.
+2. libclang in python would be an interesting way to auto-detect and generate the conversion code between one of the outputs (api/proto/etc) and an externally defined library. Currently the templates depend on assumptions about naming patterns in external libraries, and are not re-usable for others.

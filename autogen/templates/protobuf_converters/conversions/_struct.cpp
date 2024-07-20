@@ -49,7 +49,7 @@
 namespace {{ns_tpl}}
 {
     {%- if type_info.attrs or type_info.extensions %}
-    bool Convert{{type_name}}::from_protobuf({{path_package}}::{{type_name}}& dest, const {{path_package}}::{{type_name}}& src)
+    bool Convert{{type_name}}::from_protobuf({{ns_package}}::{{type_name}}& dest, const {{ns_package}}::{{type_name}}& src)
     {
         bool success = true;
 
@@ -74,7 +74,7 @@ namespace {{ns_tpl}}
             std::copy({{protobuf_getter}}.begin(), {{protobuf_getter}}.end(), std::back_inserter(temp_vector));
 
             {%- else %}
-            std::vector<{{path_package}}::{{attr.types[0].qname}}> temp_vector;
+            std::vector<{{ns_package}}::{{attr.types[0].qname}}> temp_vector;
 
             for (int i = 0; i < src.{{protobuf_getter}}().size(); ++i) {
                 temp_vector.push_back(src.{{protobuf_getter}}(i));
@@ -111,14 +111,14 @@ namespace {{ns_tpl}}
         return success;
     }
     {%- else %}
-    bool Convert{{type_name}}::from_protobuf({{path_package}}::{{type_name}}& /*dest*/, const {{path_package}}::{{type_name}}& /*src*/)
+    bool Convert{{type_name}}::from_protobuf({{ns_package}}::{{type_name}}& /*dest*/, const {{ns_package}}::{{type_name}}& /*src*/)
     {
         return true;
     }
     {%- endif %}
 
     {%- if type_info.attrs or type_info.extensions %}
-    bool Convert{{type_name}}::to_protobuf({{path_package}}::{{type_name}}& dest, const {{path_package}}::{{type_name}}& src)
+    bool Convert{{type_name}}::to_protobuf({{ns_package}}::{{type_name}}& dest, const {{ns_package}}::{{type_name}}& src)
     {
         bool success = true;
 
@@ -183,7 +183,7 @@ namespace {{ns_tpl}}
         return success;
     }
     {%- else %}
-    bool Convert{{type_name}}::to_protobuf({{path_package}}::{{type_name}}& /*dest*/, const {{path_package}}::{{type_name}}& /*src*/)
+    bool Convert{{type_name}}::to_protobuf({{ns_package}}::{{type_name}}& /*dest*/, const {{ns_package}}::{{type_name}}& /*src*/)
     {
         return true;
     }

@@ -35,7 +35,7 @@ namespace {{ns_package}}::conversions
         static_assert(
             sizeof(CppType) == -1 || sizeof(ProtoType) == -1,
             "Missing converter for typename CppType (see error message details). "
-            "Try #include <{{src_path}}/conversions/[OurType].h"
+            "Try #include {{path_package}}/conversions/[OurType].h"
         );
     };
 

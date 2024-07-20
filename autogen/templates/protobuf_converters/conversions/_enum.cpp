@@ -3,16 +3,16 @@
 
 namespace {{ns_tpl}}
 {
-    bool Convert{{type_name}}::from_protobuf({{path_package}}::{{type_name}}& dest, const {{path_package}}::{{type_name}}& src)
+    bool Convert{{type_name}}::from_protobuf({{ns_package}}::{{type_name}}& dest, const {{ns_package}}::{{type_name}}& src)
     {
         const auto lock = std::scoped_lock{utils::populateMutex};
         switch (src)
         {
             
             {%- for attr in type_info.attrs %}
-            case {{path_package}}::{{type_name}}::{{type_name}}_{{attr|enum.name}}:
+            case {{ns_package}}::{{type_name}}::{{type_name}}_{{attr|enum.name}}:
             {
-                dest = {{path_package}}::{{type_name}}::{{attr|enum.name}};
+                dest = {{ns_package}}::{{type_name}}::{{attr|enum.name}};
 				break;
 			} 
             {%- endfor %}
@@ -25,15 +25,15 @@ namespace {{ns_tpl}}
 		return true;
 	}
 
-    bool Convert{{type_name}}::to_protobuf({{path_package}}::{{type_name}}& dest, const {{path_package}}::{{type_name}}& src)
+    bool Convert{{type_name}}::to_protobuf({{ns_package}}::{{type_name}}& dest, const {{ns_package}}::{{type_name}}& src)
     {
         const auto lock = std::scoped_lock{utils::populateMutex};
         switch (src)
         {
             {%- for attr in type_info.attrs %}
-            case {{path_package}}::{{type_name}}::{{attr|enum.name}}:
+            case {{ns_package}}::{{type_name}}::{{attr|enum.name}}:
             {
-                dest = {{path_package}}::{{type_name}}::{{type_name}}_{{attr|enum.name}};
+                dest = {{ns_package}}::{{type_name}}::{{type_name}}_{{attr|enum.name}};
 				break;
 			} 
             {%- endfor %}
