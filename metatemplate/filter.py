@@ -3,7 +3,7 @@ from typing import List, Set
 from xsdata.codegen.models import Class
 from xsdata.utils import namespaces
 
-from autogen.overrides import AbstractMapper
+from metatemplate.overrides import AbstractMapper
 
 
 def filter_down(

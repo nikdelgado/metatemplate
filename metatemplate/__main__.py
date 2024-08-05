@@ -17,14 +17,14 @@ from xsdata.models.config import (
     ClassFilterStrategy,
 )
 
-from autogen.overrides import (
+from metatemplate.overrides import (
     ExtraTransformer,
     CustomClassContainer,
     YamlMapper,
     ApiClassGenerator,
 )
 
-from autogen.filter import filter_down
+from metatemplate.filter import filter_down
 
 from .settings import Settings
 
@@ -44,7 +44,7 @@ def resolve_sources(sources: List[str], recursive: bool) -> Iterator[str]:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog="AutoGen")
+    parser = argparse.ArgumentParser(prog="metatemplate")
 
     parser.add_argument(
         "-o",
@@ -52,7 +52,7 @@ if __name__ == "__main__":
         dest="output_dir",
         default=None,
         type=str,
-        help="Set the relative path to current directory to output files. Defaults to relative gitlab path of actual destination repos to autogen.",
+        help="Set the relative path to current directory to output files. Defaults to relative gitlab path of actual destination repos to metatemplate.",
     )
 
     parser.add_argument(
@@ -60,7 +60,7 @@ if __name__ == "__main__":
         "--git-ignore",
         dest="git_ignore",
         action="store_true",
-        help="INACTIVE! When set, do not check for git status in the destination directory, otherwise a destination with uncommitted changes will force exit, NOTE: not connected since autogen doesn't install currently!!.",
+        help="INACTIVE! When set, do not check for git status in the destination directory, otherwise a destination with uncommitted changes will force exit, NOTE: not connected since metatemplate doesn't install currently!!.",
     )
 
     parser.add_argument(

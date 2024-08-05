@@ -1,4 +1,4 @@
-# Autogen
+# MetaTemplate
 
 C++ code generator based on [xsdata](https://github.com/tefra/xsdata) to generate code base off a schema (YML or XSD).
 
@@ -11,19 +11,19 @@ C++ code generator based on [xsdata](https://github.com/tefra/xsdata) to generat
 ## Demo commands
 
 **Generate Protobuf converters**
-`poetry run python -m autogen -t protobuf_converters ./schemas/yaml/sample.yaml`
+`poetry run python -m metatemplate -t protobuf_converters ./schemas/yaml/sample.yaml`
 
 **Generate C++ message classes**
-`poetry run python -m autogen -t api ./schemas/yaml/sample.yaml`
+`poetry run python -m metatemplate -t api ./schemas/yaml/sample.yaml`
 
 **Generate .proto files for the protobuf compiler**
-`poetry run python -m autogen -t protobuf ./schemas/yaml/sample.yaml`
+`poetry run python -m metatemplate -t protobuf ./schemas/yaml/sample.yaml`
 
 ## Quick commands
 
 If you already have an environment set up, or are running inside a built container:
 
-`python -m autogen -t [TEMPLATE_TYPE] ./schemas/yaml/sample.yaml`
+`python -m metatemplate -t [TEMPLATE_TYPE] ./schemas/yaml/sample.yaml`
 
 NOTE: if running in a poetry env, prefix commands with `poetry run`
 
@@ -37,7 +37,7 @@ Templates can live inside the application, or referenced from a location on disk
 
 ## Template structure
 
-Each folder under `autogen/templates` can be considered an output "type" which can be enabled using the `-t`
+Each folder under `metatemplate/templates` can be considered an output "type" which can be enabled using the `-t`
 
 The file structure under the first directory or "type" specifies the structure to render the files to. This allows the templates to be stored
 exactly how they will be rendered (in subdirs). The output directory for non-test classes is `src/[expanded namespace]/[template structure]/[filename]`
@@ -94,12 +94,12 @@ Using `poetry add [package]` will update pyproject.toml and install the package 
 
 ### Running
 
-using the poetry env is just like python, except you prefix your commands with `poetry run`, to run the autogen application:
-`poetry run python -m autogen --help`
+using the poetry env is just like python, except you prefix your commands with `poetry run`, to run the metatemplate application:
+`poetry run python -m metatemplate --help`
 
 ### Argument Usage
 
-poetry run python -m autogen -t api -ns api,common::api::cpp ./schemas/yaml/sample.yaml
+poetry run python -m metatemplate -t api -ns api,common::api::cpp ./schemas/yaml/sample.yaml
 
 -t [tpl_dir] is used to specify which specific template directory you would like to use
 

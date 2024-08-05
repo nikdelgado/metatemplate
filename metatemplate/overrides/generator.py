@@ -29,7 +29,7 @@ from .filters import AgFilters
 from .resolver import AgResolver
 from .custom_types import CUSTOM_QNAME_INCLUDES
 from .helpers import FilterMethods, xsdata_class_type
-from autogen.settings import Settings, TemplateSpec
+from metatemplate.settings import Settings, TemplateSpec
 
 
 def _generator_result(path: Path, title: str, source: str) -> GeneratorResult:

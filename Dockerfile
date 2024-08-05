@@ -24,4 +24,4 @@ COPY . /app
 
 # Set the entry point for the container
 ENTRYPOINT ["poetry", "run"]
-CMD ["python", "-m", "autogen", "--help"]
+CMD ["python", "-m", "metatemplate", "--help"]

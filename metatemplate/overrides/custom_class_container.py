@@ -78,7 +78,7 @@ def _replace_proc(procs_list: List[Any], clazz: Type, replacement: Any):
 
 
 class CustomClassContainer(ClassContainer):
-    """In the scope of autogen there are a few class processors
+    """In the scope of metatemplate there are a few class processors
     that require custom behavior given our class schemas.
 
     This container replaces the processors in certain steps and
